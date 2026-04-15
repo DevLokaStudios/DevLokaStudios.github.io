@@ -24,7 +24,7 @@ At DevLokaStudios, we are committed to:
 An exciting high-speed car racing game featuring dynamic tracks, competitive gameplay, and immersive environments.
 
 🔗 Learn More:  
-https://DevLokaStudios.github.io
+https://DevLokaStudios.github.io/game1.html
 
 ---
 
