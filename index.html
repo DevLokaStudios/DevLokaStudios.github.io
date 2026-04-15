@@ -12,40 +12,46 @@
     }
 
     header {
-      padding: 40px 20px;
+      padding: 50px 20px;
       background: linear-gradient(90deg, #1e3a8a, #2563eb);
     }
 
     h1 {
       margin: 0;
-      font-size: 36px;
-    }
-
-    h2 {
-      margin-top: 20px;
-      font-size: 28px;
-      color: #93c5fd;
-    }
-
-    p {
-      font-size: 18px;
-      margin-top: 10px;
-      color: #cbd5f5;
+      font-size: 40px;
     }
 
     .container {
       padding: 40px 20px;
     }
 
+    .games {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .card {
+      background-color: #1e293b;
+      padding: 25px;
+      border-radius: 12px;
+      width: 280px;
+    }
+
+    .card h2 {
+      color: #93c5fd;
+    }
+
     .btn {
       display: inline-block;
-      margin-top: 30px;
-      padding: 12px 25px;
-      font-size: 18px;
+      margin-top: 15px;
+      padding: 10px 20px;
       color: white;
       background-color: #2563eb;
       text-decoration: none;
-      border-radius: 8px;
+      border-radius: 6px;
     }
 
     .btn:hover {
@@ -58,34 +64,39 @@
       font-size: 14px;
       color: #94a3b8;
     }
-
-    a {
-      color: #60a5fa;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
   </style>
 </head>
 <body>
 
   <header>
     <h1>DevLokaStudios</h1>
-    <h2>Turbo Realm Racing</h2>
-    <p>High-speed racing. Endless excitement.</p>
+    <p>Official Game Studio Website</p>
   </header>
 
   <div class="container">
-    <h2>About the Game</h2>
-    <p>
-      Turbo Realm Racing is an exciting car racing game where players experience
-      high-speed action, challenging tracks, and competitive gameplay.
-      Race through dynamic environments and test your driving skills.
-    </p>
+    <h1>Our Games</h1>
 
-    <a class="btn" href="/privacy-policy.html">View Privacy Policy</a>
+    <div class="games">
+
+      <!-- Turbo Realm Racing -->
+      <div class="card">
+        <h2>🚗 Turbo Realm Racing</h2>
+        <p>High-speed racing experience with dynamic tracks.</p>
+        <a class="btn" href="game1.html">Open Game Page</a>
+      </div>
+
+      <!-- Runfinity -->
+      <div class="card">
+        <h2>🕹️ Runfinity</h2>
+        <p>Fast-paced endless runner with challenging obstacles.</p>
+        <a class="btn" href="game2.html">Open Game Page</a>
+      </div>
+
+    </div>
+
+    <br><br>
+    <a class="btn" href="privacy-policy.html">Company Privacy Policy</a>
+
   </div>
 
   <footer>
