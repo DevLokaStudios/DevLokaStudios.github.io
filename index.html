@@ -1,536 +1,499 @@
-# DevLokaStudios — 3D Interactive Landing Page (`index.html`)
-
-```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DevLokaStudios</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Three.js -->
-  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<title>DevLokaStudios</title>
 
-  <style>
+<!-- THREE JS -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<style>
 
-    body {
-      font-family: Arial, sans-serif;
-      overflow-x: hidden;
-      background: #020617;
-      color: white;
-    }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    /* 3D Background */
-    #bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -3;
-    }
+body{
+  overflow:hidden;
+  font-family:Arial,sans-serif;
+  background:#020617;
+  color:white;
+}
 
-    /* Mouse Glow */
-    .mouse-glow {
-      position: fixed;
-      width: 500px;
-      height: 500px;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: -2;
+/* FULLSCREEN BACKGROUND */
+#bg{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:-10;
+}
 
-      background:
-      radial-gradient(circle,
-      rgba(37,99,235,0.22) 0%,
-      rgba(37,99,235,0.12) 25%,
-      rgba(37,99,235,0.04) 50%,
-      transparent 75%);
+/* DARK OVERLAY */
+.overlay{
+  position:fixed;
+  inset:0;
 
-      filter: blur(40px);
+  background:
+  radial-gradient(
+  circle at center,
+  rgba(15,23,42,0.2),
+  rgba(2,6,23,0.82)
+  );
 
-      transform: translate(-50%, -50%);
+  z-index:-5;
+}
 
-      transition: transform 0.05s linear;
-    }
+/* MAIN CONTENT */
+.content{
+  position:relative;
+  z-index:10;
 
-    header,
-    .container,
-    footer {
-      position: relative;
-      z-index: 5;
-    }
+  min-height:100vh;
 
-    /* Header */
-    header {
-      padding: 90px 20px;
-      text-align: center;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
 
-      background:
-      linear-gradient(
-      180deg,
-      rgba(30,41,59,0.7),
-      rgba(2,6,23,0.2)
-      );
+  text-align:center;
 
-      backdrop-filter: blur(14px);
+  padding:20px;
+}
 
-      border-bottom:
-      1px solid rgba(255,255,255,0.06);
-    }
+/* TITLE */
+h1{
 
-    header h1 {
-      font-size: 70px;
-      margin-bottom: 18px;
+  font-size:85px;
 
-      background:
-      linear-gradient(to right,
-      #ffffff,
-      #93c5fd,
-      #60a5fa);
+  margin-bottom:20px;
 
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+  background:
+  linear-gradient(
+  to right,
+  #ffffff,
+  #93c5fd,
+  #60a5fa
+  );
 
-      letter-spacing: 2px;
-    }
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 
-    header p {
-      color: #cbd5e1;
-      font-size: 22px;
-    }
+  letter-spacing:3px;
 
-    /* Main */
-    .container {
-      padding: 80px 20px;
-      text-align: center;
-    }
+  text-shadow:
+  0 0 25px rgba(96,165,250,0.35);
 
-    .container h2 {
-      font-size: 42px;
-      margin-bottom: 50px;
-      color: #dbeafe;
-    }
+}
 
-    /* Game Cards */
-    .games {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 40px;
-    }
+/* SUBTITLE */
+.subtitle{
 
-    .card {
-      width: 340px;
+  font-size:24px;
 
-      padding: 35px;
+  color:#cbd5e1;
 
-      border-radius: 24px;
+  margin-bottom:60px;
 
-      background:
-      rgba(15,23,42,0.72);
+}
 
-      border:
-      1px solid rgba(255,255,255,0.08);
+/* BUTTONS */
+.buttons{
+  display:flex;
+  gap:25px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
 
-      backdrop-filter: blur(14px);
+.btn{
 
-      transition:
-      transform 0.4s ease,
-      box-shadow 0.4s ease,
-      border 0.4s ease;
+  padding:16px 32px;
 
-      overflow: hidden;
+  border-radius:14px;
 
-      position: relative;
-    }
+  text-decoration:none;
 
-    .card::before {
-      content: "";
+  color:white;
 
-      position: absolute;
-      inset: 0;
+  font-size:18px;
 
-      background:
-      linear-gradient(
-      135deg,
-      transparent,
-      rgba(96,165,250,0.08),
-      transparent);
+  background:
+  linear-gradient(
+  135deg,
+  rgba(37,99,235,0.9),
+  rgba(29,78,216,0.9)
+  );
 
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
+  border:none;
 
-    .card:hover::before {
-      opacity: 1;
-    }
+  cursor:pointer;
 
-    .card:hover {
-      transform:
-      translateY(-12px)
-      scale(1.03)
-      rotateX(4deg);
+  transition:
+  transform 0.35s ease,
+  box-shadow 0.35s ease,
+  border 0.35s ease;
+}
 
-      border:
-      1px solid rgba(147,197,253,0.35);
+.btn:hover{
 
-      box-shadow:
-      0 0 25px rgba(59,130,246,0.25),
-      0 0 80px rgba(59,130,246,0.12);
-    }
+  transform:
+  translateY(-6px)
+  scale(1.05);
 
-    .card h3 {
-      font-size: 30px;
-      margin-bottom: 20px;
-      color: #93c5fd;
-    }
+  box-shadow:
+  0 0 30px rgba(59,130,246,0.4),
+  0 0 80px rgba(59,130,246,0.15);
 
-    .card p {
-      line-height: 1.7;
-      color: #cbd5e1;
-      margin-bottom: 28px;
-    }
+}
 
-    .btn {
-      display: inline-block;
+/* PANEL */
+.panel{
 
-      padding: 14px 26px;
+  margin-top:70px;
 
-      border-radius: 12px;
+  padding:28px;
 
-      text-decoration: none;
-      color: white;
+  width:800px;
+  max-width:95%;
 
-      background:
-      linear-gradient(
-      135deg,
-      #2563eb,
-      #1d4ed8);
+  border-radius:22px;
 
-      transition:
-      transform 0.3s ease,
-      box-shadow 0.3s ease;
-    }
+  background:
+  rgba(15,23,42,0.5);
 
-    .btn:hover {
-      transform: scale(1.06);
+  border:
+  1px solid rgba(255,255,255,0.08);
 
-      box-shadow:
-      0 0 25px rgba(37,99,235,0.55);
-    }
+  backdrop-filter:blur(14px);
 
-    /* Footer */
-    footer {
-      margin-top: 90px;
-      padding: 30px;
-      text-align: center;
+}
 
-      color: #94a3b8;
+.panel h2{
 
-      background:
-      rgba(2,6,23,0.45);
+  margin-bottom:18px;
 
-      border-top:
-      1px solid rgba(255,255,255,0.05);
+  color:#93c5fd;
 
-      backdrop-filter: blur(10px);
-    }
+  font-size:34px;
 
-    /* Mobile */
-    @media(max-width: 768px) {
+}
 
-      header h1 {
-        font-size: 48px;
-      }
+.panel p{
 
-      header p {
-        font-size: 18px;
-      }
+  line-height:1.8;
 
-      .container h2 {
-        font-size: 34px;
-      }
+  color:#cbd5e1;
 
-      .card {
-        width: 92%;
-      }
+  font-size:17px;
 
-    }
+}
 
-  </style>
+/* FOOTER */
+footer{
+
+  position:absolute;
+
+  bottom:20px;
+
+  text-align:center;
+
+  width:100%;
+
+  color:#94a3b8;
+
+  font-size:14px;
+
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+  h1{
+    font-size:48px;
+  }
+
+  .subtitle{
+    font-size:18px;
+  }
+
+  .panel h2{
+    font-size:28px;
+  }
+
+}
+
+</style>
 </head>
 
 <body>
 
-  <!-- 3D Background -->
-  <canvas id="bg"></canvas>
+<!-- BACKGROUND -->
+<canvas id="bg"></canvas>
 
-  <!-- Mouse Glow -->
-  <div class="mouse-glow" id="mouseGlow"></div>
+<div class="overlay"></div>
 
-  <!-- Header -->
-  <header>
-    <h1>DevLokaStudios</h1>
-    <p>Official Game Studio Website</p>
-  </header>
+<!-- CONTENT -->
+<div class="content">
 
-  <!-- Main -->
-  <div class="container">
+  <h1>DevLokaStudios</h1>
 
-    <h2>Our Games</h2>
+  <p class="subtitle">
+    Futuristic Interactive Game Studio Experience
+  </p>
 
-    <div class="games">
+  <div class="buttons">
 
-      <!-- Card 1 -->
-      <div class="card">
-        <h3>🚗 Turbo Realm Racing</h3>
+    <!-- FIXED BUTTONS -->
+    <button class="btn">
+      🚗 Turbo Realm Racing
+    </button>
 
-        <p>
-          Futuristic high-speed racing with neon tracks,
-          dynamic physics, and cinematic gameplay.
-        </p>
-
-        <a href="game1.html" class="btn">
-          Open Game Page
-        </a>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="card">
-        <h3>🕹️ Runfinity</h3>
-
-        <p>
-          Endless running adventure packed with
-          fast reflex challenges and intense action.
-        </p>
-
-        <a href="game2.html" class="btn">
-          Open Game Page
-        </a>
-      </div>
-
-    </div>
+    <button class="btn">
+      🕹️ Runfinity
+    </button>
 
   </div>
 
-  <!-- Footer -->
-  <footer>
-    <p>Contact: devlokstudiossupport@gmail.com</p>
-    <p>© 2026 DevLokaStudios. All rights reserved.</p>
-  </footer>
+  <div class="panel">
 
-  <script>
+    <h2>Next Generation Gaming</h2>
 
-    // =========================
-    // MOUSE GLOW
-    // =========================
+    <p>
+      Explore immersive worlds, futuristic racing,
+      cinematic adventures, and intense gameplay
+      experiences crafted by DevLokaStudios.
+    </p>
 
-    const glow = document.getElementById("mouseGlow");
+  </div>
 
-    window.addEventListener("mousemove", (e) => {
+</div>
 
-      glow.style.left = e.clientX + "px";
-      glow.style.top = e.clientY + "px";
+<!-- FOOTER -->
+<footer>
 
-    });
+  Contact: devlokstudiossupport@gmail.com
+  <br>
+  © 2026 DevLokaStudios
 
-    window.addEventListener("touchmove", (e) => {
+</footer>
 
-      glow.style.left = e.touches[0].clientX + "px";
-      glow.style.top = e.touches[0].clientY + "px";
+<script>
 
-    });
+// ===========================
+// SCENE
+// ===========================
 
+const scene = new THREE.Scene();
 
-    // =========================
-    // THREE.JS 3D PARTICLES
-    // =========================
+const camera = new THREE.PerspectiveCamera(
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
 
-    const scene = new THREE.Scene();
+camera.position.z = 12;
 
-    const camera = new THREE.PerspectiveCamera(
-      75,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
-    );
+// ===========================
+// RENDERER
+// ===========================
 
-    const renderer = new THREE.WebGLRenderer({
-      canvas: document.getElementById("bg"),
-      alpha: true,
-      antialias: true
-    });
+const renderer = new THREE.WebGLRenderer({
 
-    renderer.setSize(
-      window.innerWidth,
-      window.innerHeight
-    );
+  canvas:document.getElementById("bg"),
 
-    renderer.setPixelRatio(window.devicePixelRatio);
+  antialias:true,
 
+  alpha:true
 
-    // PARTICLES
+});
 
-    const particlesGeometry = new THREE.BufferGeometry();
+renderer.setSize(
+  window.innerWidth,
+  window.innerHeight
+);
 
-    const particlesCount = 3500;
+renderer.setPixelRatio(
+  Math.min(window.devicePixelRatio,2)
+);
 
-    const posArray = new Float32Array(
-      particlesCount * 3
-    );
+// ===========================
+// PARTICLES
+// ===========================
 
-    for(let i = 0; i < particlesCount * 3; i++) {
+const particlesGeometry =
+new THREE.BufferGeometry();
 
-      posArray[i] = (Math.random() - 0.5) * 18;
+const particleCount = 15000;
 
-    }
+const positions =
+new Float32Array(particleCount * 3);
 
-    particlesGeometry.setAttribute(
-      'position',
-      new THREE.BufferAttribute(posArray, 3)
-    );
+const colors =
+new Float32Array(particleCount * 3);
 
+for(let i = 0; i < particleCount; i++){
 
-    // MATERIAL
+  const i3 = i * 3;
 
-    const particlesMaterial = new THREE.PointsMaterial({
+  positions[i3] =
+  (Math.random() - 0.5) * 60;
 
-      size: 0.025,
+  positions[i3 + 1] =
+  (Math.random() - 0.5) * 60;
 
-      color: 0x60a5fa,
+  positions[i3 + 2] =
+  (Math.random() - 0.5) * 60;
 
-      transparent: true,
+  colors[i3] = 0.3;
+  colors[i3 + 1] = 0.6;
+  colors[i3 + 2] = 1;
 
-      opacity: 0.9,
+}
 
-      blending: THREE.AdditiveBlending
+particlesGeometry.setAttribute(
+  "position",
+  new THREE.BufferAttribute(
+    positions,
+    3
+  )
+);
 
-    });
+particlesGeometry.setAttribute(
+  "color",
+  new THREE.BufferAttribute(
+    colors,
+    3
+  )
+);
 
+// ===========================
+// MATERIAL
+// ===========================
 
-    // PARTICLE MESH
+const particlesMaterial =
+new THREE.PointsMaterial({
 
-    const particlesMesh = new THREE.Points(
-      particlesGeometry,
-      particlesMaterial
-    );
+  size:0.06,
 
-    scene.add(particlesMesh);
+  vertexColors:true,
 
+  transparent:true,
 
-    // CAMERA POSITION
+  opacity:0.9,
 
-    camera.position.z = 5;
+  blending:
+  THREE.AdditiveBlending,
 
+  depthWrite:false
 
-    // MOUSE INTERACTION
+});
 
-    let mouseX = 0;
-    let mouseY = 0;
+// ===========================
+// PARTICLE SYSTEM
+// ===========================
 
-    document.addEventListener("mousemove", (event) => {
+const particlesMesh =
+new THREE.Points(
+  particlesGeometry,
+  particlesMaterial
+);
 
-      mouseX = event.clientX / window.innerWidth - 0.5;
-      mouseY = event.clientY / window.innerHeight - 0.5;
+scene.add(particlesMesh);
 
-    });
+// ===========================
+// MOUSE
+// ===========================
 
+let mouseX = 0;
+let mouseY = 0;
 
-    // RESIZE
+document.addEventListener(
+  "mousemove",
+  (event)=>{
 
-    window.addEventListener("resize", () => {
+  mouseX =
+  (event.clientX / window.innerWidth - 0.5);
 
-      camera.aspect =
-      window.innerWidth / window.innerHeight;
+  mouseY =
+  (event.clientY / window.innerHeight - 0.5);
 
-      camera.updateProjectionMatrix();
+});
 
-      renderer.setSize(
-        window.innerWidth,
-        window.innerHeight
-      );
+// ===========================
+// RESIZE
+// ===========================
 
-    });
+window.addEventListener(
+  "resize",
+  ()=>{
 
+  camera.aspect =
+  window.innerWidth /
+  window.innerHeight;
 
-    // ANIMATION
+  camera.updateProjectionMatrix();
 
-    const clock = new THREE.Clock();
+  renderer.setSize(
+    window.innerWidth,
+    window.innerHeight
+  );
 
-    function animate() {
+});
 
-      requestAnimationFrame(animate);
+// ===========================
+// ANIMATION
+// ===========================
 
-      const elapsedTime = clock.getElapsedTime();
+const clock =
+new THREE.Clock();
 
+function animate(){
 
-      // PARTICLE MOTION
+  requestAnimationFrame(animate);
 
-      particlesMesh.rotation.y =
-      elapsedTime * 0.05;
+  const elapsedTime =
+  clock.getElapsedTime();
 
-      particlesMesh.rotation.x =
-      elapsedTime * 0.02;
+  particlesMesh.rotation.y =
+  elapsedTime * 0.05;
 
+  particlesMesh.rotation.x =
+  elapsedTime * 0.03;
 
-      // MOUSE PARALLAX
+  particlesMesh.rotation.y +=
+  mouseX * 0.4;
 
-      particlesMesh.rotation.y +=
-      mouseX * 0.002;
+  particlesMesh.rotation.x +=
+  mouseY * 0.25;
 
-      particlesMesh.rotation.x +=
-      mouseY * 0.002;
+  particlesMesh.position.y =
+  Math.sin(elapsedTime * 0.5)
+  * 0.5;
 
+  camera.position.x +=
+  (mouseX * 2 - camera.position.x)
+  * 0.02;
 
-      // FLOATING EFFECT
+  camera.position.y +=
+  (-mouseY * 2 - camera.position.y)
+  * 0.02;
 
-      particlesMesh.position.y =
-      Math.sin(elapsedTime * 0.4) * 0.15;
+  camera.lookAt(scene.position);
 
+  renderer.render(scene,camera);
 
-      renderer.render(scene, camera);
+}
 
-    }
+animate();
 
-    animate();
-
-  </script>
+</script>
 
 </body>
 </html>
-```
-
-# Preview Features
-
-This version includes:
-
-* Real 3D particle system using Three.js
-* Interactive mouse movement
-* Touch interaction on mobile
-* Dynamic glow effect
-* Floating cinematic particles
-* Glassmorphism game cards
-* Neon hover animations
-* AAA-style game studio atmosphere
-* Responsive mobile support
-* GPU-rendered WebGL background
-
-# How To Use
-
-1. Save as:
-
-```text
-index.html
-```
-
-2. Open in browser.
-
-3. Recommended:
-
-Use VS Code + Live Server for smooth rendering.
