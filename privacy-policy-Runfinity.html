@@ -1,55 +1,753 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>Privacy Policy - Runfinity</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      background-color: #0f172a;
-      color: white;
-    }
 
-    h1, h2 {
-      color: #93c5fd;
-    }
+<meta charset="UTF-8">
 
-    p {
-      color: #cbd5f5;
-      line-height: 1.6;
-    }
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-    a {
-      color: #60a5fa;
-    }
-  </style>
+<title>
+Privacy Policy - Runfinity
+</title>
+
+<!-- THREE.JS -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+
+  font-family:Arial,sans-serif;
+
+  background:#020617;
+
+  color:white;
+
+  overflow-x:hidden;
+
+}
+
+/* BACKGROUND */
+#bg{
+
+  position:fixed;
+
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  z-index:-10;
+
+}
+
+/* OVERLAY */
+.overlay{
+
+  position:fixed;
+
+  inset:0;
+
+  background:
+  radial-gradient(
+  circle at center,
+  rgba(168,85,247,0.12),
+  rgba(2,6,23,0.92)
+  );
+
+  z-index:-5;
+
+}
+
+/* MAIN */
+.container{
+
+  width:100%;
+
+  min-height:100vh;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  padding:60px 20px;
+
+}
+
+/* TITLE */
+h1{
+
+  font-size:68px;
+
+  text-align:center;
+
+  margin-bottom:18px;
+
+  background:
+  linear-gradient(
+  to right,
+  #ffffff,
+  #d8b4fe,
+  #a855f7
+  );
+
+  -webkit-background-clip:text;
+
+  -webkit-text-fill-color:transparent;
+
+  text-shadow:
+  0 0 30px rgba(168,85,247,0.35);
+
+}
+
+/* SUBTITLE */
+.subtitle{
+
+  font-size:22px;
+
+  color:#d8b4fe;
+
+  margin-bottom:50px;
+
+  text-align:center;
+
+}
+
+/* POLICY CARD */
+.policy{
+
+  width:950px;
+
+  max-width:95%;
+
+  padding:45px;
+
+  border-radius:28px;
+
+  background:
+  rgba(15,23,42,0.55);
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(18px);
+
+  box-shadow:
+  0 0 40px rgba(0,0,0,0.25);
+
+}
+
+/* SECTION */
+.section{
+
+  margin-bottom:40px;
+
+}
+
+/* SECTION TITLE */
+.section h2{
+
+  font-size:32px;
+
+  margin-bottom:18px;
+
+  color:#d8b4fe;
+
+}
+
+/* TEXT */
+.section p{
+
+  font-size:18px;
+
+  line-height:1.9;
+
+  color:#e9d5ff;
+
+}
+
+/* BUTTON AREA */
+.buttons{
+
+  margin-top:45px;
+
+  display:flex;
+
+  gap:20px;
+
+  flex-wrap:wrap;
+
+  justify-content:center;
+
+}
+
+/* BUTTON */
+.btn{
+
+  display:inline-block;
+
+  padding:18px 34px;
+
+  border-radius:16px;
+
+  text-decoration:none;
+
+  color:white;
+
+  font-size:18px;
+
+  font-weight:bold;
+
+  background:
+  linear-gradient(
+  135deg,
+  rgba(168,85,247,0.95),
+  rgba(147,51,234,0.95)
+  );
+
+  transition:
+  transform 0.35s ease,
+  box-shadow 0.35s ease;
+
+}
+
+/* BUTTON HOVER */
+.btn:hover{
+
+  transform:
+  translateY(-6px)
+  scale(1.05);
+
+  box-shadow:
+  0 0 35px rgba(168,85,247,0.5),
+  0 0 90px rgba(168,85,247,0.18);
+
+}
+
+/* FOOTER */
+footer{
+
+  margin-top:60px;
+
+  text-align:center;
+
+  color:#94a3b8;
+
+  font-size:14px;
+
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+  h1{
+    font-size:42px;
+  }
+
+  .subtitle{
+    font-size:18px;
+  }
+
+  .policy{
+    padding:28px;
+  }
+
+  .section h2{
+    font-size:26px;
+  }
+
+  .section p{
+    font-size:16px;
+  }
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-<h1>Privacy Policy for Runfinity</h1>
+<!-- BACKGROUND -->
+<canvas id="bg"></canvas>
 
-<p>DevLokaStudios built the Runfinity app as a free game. This SERVICE is provided by DevLokaStudios and is intended for use as is.</p>
+<!-- OVERLAY -->
+<div class="overlay"></div>
 
-<h2>Information Collection and Use</h2>
-<p>The app may collect basic information such as device information, usage data, and crash logs to improve the app experience.</p>
+<!-- MAIN -->
+<div class="container">
 
-<h2>Third-Party Services</h2>
-<p>The app may use third-party services such as Google AdMob, which may collect information used to identify you.</p>
+  <h1>
+    Privacy Policy
+  </h1>
 
-<h2>Cookies</h2>
-<p>This app may use cookies or similar technologies for better user experience.</p>
+  <div class="subtitle">
+    Runfinity
+  </div>
 
-<h2>Security</h2>
-<p>We value your trust and strive to use commercially acceptable means of protecting your information.</p>
+  <div class="policy">
 
-<h2>Children’s Privacy</h2>
-<p>This app does not knowingly collect personally identifiable information from children under 13.</p>
+    <!-- SECTION -->
+    <div class="section">
 
-<h2>Changes to This Policy</h2>
-<p>We may update our Privacy Policy from time to time. Changes will be posted on this page.</p>
+      <h2>
+        Information Collection and Use
+      </h2>
 
-<h2>Contact Us</h2>
-<p>If you have any questions, contact us at devlokstudiossupport@gmail.com</p>
+      <p>
+
+        Runfinity may collect limited
+        gameplay-related information
+        such as device data,
+        crash logs,
+        analytics,
+        and performance statistics
+        to improve gameplay quality,
+        stability,
+        and overall user experience.
+
+      </p>
+
+    </div>
+
+    <!-- SECTION -->
+    <div class="section">
+
+      <h2>
+        Third-Party Services
+      </h2>
+
+      <p>
+
+        The application may use trusted
+        third-party services including
+        advertising and analytics providers
+        such as Google AdMob,
+        which may collect anonymous data
+        under their own privacy policies.
+
+      </p>
+
+    </div>
+
+    <!-- SECTION -->
+    <div class="section">
+
+      <h2>
+        Cookies & Technologies
+      </h2>
+
+      <p>
+
+        Runfinity may use cookies
+        or similar technologies
+        to save user preferences,
+        improve performance,
+        and enhance the gameplay experience.
+
+      </p>
+
+    </div>
+
+    <!-- SECTION -->
+    <div class="section">
+
+      <h2>
+        Security
+      </h2>
+
+      <p>
+
+        DevLokaStudios values your trust
+        and uses commercially acceptable
+        methods to protect collected data
+        against unauthorized access,
+        disclosure,
+        or misuse.
+
+      </p>
+
+    </div>
+
+    <!-- SECTION -->
+    <div class="section">
+
+      <h2>
+        Children’s Privacy
+      </h2>
+
+      <p>
+
+        Runfinity does not knowingly collect
+        personally identifiable information
+        from children under 13 years of age.
+
+      </p>
+
+    </div>
+
+    <!-- SECTION -->
+    <div class="section">
+
+      <h2>
+        Policy Updates
+      </h2>
+
+      <p>
+
+        This Privacy Policy may be updated
+        periodically.
+        Any future changes
+        will appear on this page.
+
+      </p>
+
+    </div>
+
+    <!-- SECTION -->
+    <div class="section">
+
+      <h2>
+        Contact Us
+      </h2>
+
+      <p>
+
+        For questions regarding
+        this Privacy Policy,
+        contact us at:
+
+        <br><br>
+
+        devlokstudiossupport@gmail.com
+
+      </p>
+
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="buttons">
+
+      <a href="game2.html"
+      class="btn">
+
+        Back To Game Page
+
+      </a>
+
+      <a href="index.html"
+      class="btn">
+
+        Home
+
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+
+    © 2026 DevLokaStudios
+
+  </footer>
+
+</div>
+
+<script>
+
+// ======================
+// SCENE
+// ======================
+
+const scene =
+new THREE.Scene();
+
+// ======================
+// CAMERA
+// ======================
+
+const camera =
+new THREE.PerspectiveCamera(
+
+  75,
+
+  window.innerWidth /
+  window.innerHeight,
+
+  0.1,
+
+  1000
+
+);
+
+camera.position.z = 12;
+
+// ======================
+// RENDERER
+// ======================
+
+const renderer =
+new THREE.WebGLRenderer({
+
+  canvas:
+  document.getElementById("bg"),
+
+  antialias:true,
+
+  alpha:true
+
+});
+
+renderer.setSize(
+
+  window.innerWidth,
+
+  window.innerHeight
+
+);
+
+renderer.setPixelRatio(
+
+  Math.min(
+    window.devicePixelRatio,
+    2
+  )
+
+);
+
+// ======================
+// PARTICLES
+// ======================
+
+const particlesGeometry =
+new THREE.BufferGeometry();
+
+const particleCount = 16000;
+
+const positions =
+new Float32Array(
+  particleCount * 3
+);
+
+const colors =
+new Float32Array(
+  particleCount * 3
+);
+
+// CREATE PARTICLES
+
+for(let i = 0; i < particleCount; i++){
+
+  const i3 = i * 3;
+
+  positions[i3] =
+  (Math.random() - 0.5) * 70;
+
+  positions[i3 + 1] =
+  (Math.random() - 0.5) * 70;
+
+  positions[i3 + 2] =
+  (Math.random() - 0.5) * 70;
+
+  colors[i3] = 0.8;
+  colors[i3 + 1] = 0.4;
+  colors[i3 + 2] = 1;
+
+}
+
+// POSITION
+
+particlesGeometry.setAttribute(
+
+  "position",
+
+  new THREE.BufferAttribute(
+    positions,
+    3
+  )
+
+);
+
+// COLOR
+
+particlesGeometry.setAttribute(
+
+  "color",
+
+  new THREE.BufferAttribute(
+    colors,
+    3
+  )
+
+);
+
+// ======================
+// MATERIAL
+// ======================
+
+const particlesMaterial =
+new THREE.PointsMaterial({
+
+  size:0.06,
+
+  vertexColors:true,
+
+  transparent:true,
+
+  opacity:0.9,
+
+  blending:
+  THREE.AdditiveBlending,
+
+  depthWrite:false
+
+});
+
+// ======================
+// PARTICLE SYSTEM
+// ======================
+
+const particlesMesh =
+new THREE.Points(
+
+  particlesGeometry,
+
+  particlesMaterial
+
+);
+
+scene.add(particlesMesh);
+
+// ======================
+// MOUSE
+// ======================
+
+let mouseX = 0;
+let mouseY = 0;
+
+document.addEventListener(
+
+  "mousemove",
+
+  (event)=>{
+
+    mouseX =
+    event.clientX /
+    window.innerWidth - 0.5;
+
+    mouseY =
+    event.clientY /
+    window.innerHeight - 0.5;
+
+  }
+
+);
+
+// ======================
+// RESIZE
+// ======================
+
+window.addEventListener(
+
+  "resize",
+
+  ()=>{
+
+    camera.aspect =
+    window.innerWidth /
+    window.innerHeight;
+
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(
+
+      window.innerWidth,
+
+      window.innerHeight
+
+    );
+
+  }
+
+);
+
+// ======================
+// ANIMATION
+// ======================
+
+const clock =
+new THREE.Clock();
+
+function animate(){
+
+  requestAnimationFrame(animate);
+
+  const elapsedTime =
+  clock.getElapsedTime();
+
+  // ROTATION
+
+  particlesMesh.rotation.y =
+  elapsedTime * 0.05;
+
+  particlesMesh.rotation.x =
+  elapsedTime * 0.03;
+
+  // INTERACTION
+
+  particlesMesh.rotation.y +=
+  mouseX * 0.2;
+
+  particlesMesh.rotation.x +=
+  mouseY * 0.12;
+
+  // FLOATING
+
+  particlesMesh.position.y =
+  Math.sin(
+    elapsedTime * 0.5
+  ) * 0.5;
+
+  // CAMERA
+
+  camera.position.x +=
+
+  (mouseX * 2
+  - camera.position.x)
+
+  * 0.02;
+
+  camera.position.y +=
+
+  (-mouseY * 2
+  - camera.position.y)
+
+  * 0.02;
+
+  camera.lookAt(scene.position);
+
+  renderer.render(
+    scene,
+    camera
+  );
+
+}
+
+animate();
+
+</script>
 
 </body>
 </html>
