@@ -2,8 +2,11 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>DevLokaStudios</title>
 
@@ -19,60 +22,77 @@
 }
 
 body{
+
   overflow:hidden;
+
   font-family:Arial,sans-serif;
+
   background:#020617;
+
   color:white;
+
 }
 
-/* FULLSCREEN BACKGROUND */
+/* BACKGROUND */
 #bg{
+
   position:fixed;
+
   top:0;
   left:0;
+
   width:100%;
   height:100%;
+
   z-index:-10;
+
 }
 
 /* DARK OVERLAY */
 .overlay{
+
   position:fixed;
+
   inset:0;
 
   background:
   radial-gradient(
   circle at center,
-  rgba(15,23,42,0.2),
-  rgba(2,6,23,0.82)
+  rgba(15,23,42,0.15),
+  rgba(2,6,23,0.85)
   );
 
   z-index:-5;
+
 }
 
 /* MAIN CONTENT */
 .content{
+
   position:relative;
+
   z-index:10;
 
   min-height:100vh;
 
   display:flex;
+
   flex-direction:column;
+
   justify-content:center;
+
   align-items:center;
 
   text-align:center;
 
   padding:20px;
+
 }
 
 /* TITLE */
 h1{
 
-  font-size:85px;
-
-  margin-bottom:20px;
+  font-size:90px;
 
   background:
   linear-gradient(
@@ -83,32 +103,29 @@ h1{
   );
 
   -webkit-background-clip:text;
+
   -webkit-text-fill-color:transparent;
 
   letter-spacing:3px;
 
+  margin-bottom:50px;
+
   text-shadow:
-  0 0 25px rgba(96,165,250,0.35);
-
-}
-
-/* SUBTITLE */
-.subtitle{
-
-  font-size:24px;
-
-  color:#cbd5e1;
-
-  margin-bottom:60px;
+  0 0 25px rgba(96,165,250,0.4);
 
 }
 
 /* BUTTONS */
 .buttons{
+
   display:flex;
+
   gap:25px;
+
   flex-wrap:wrap;
+
   justify-content:center;
+
 }
 
 /* BUTTON STYLE */
@@ -116,15 +133,17 @@ h1{
 
   display:inline-block;
 
-  padding:16px 32px;
+  padding:18px 34px;
 
-  border-radius:14px;
+  border-radius:16px;
 
   text-decoration:none;
 
   color:white;
 
   font-size:18px;
+
+  font-weight:bold;
 
   background:
   linear-gradient(
@@ -133,67 +152,25 @@ h1{
   rgba(29,78,216,0.9)
   );
 
-  border:none;
-
-  cursor:pointer;
+  border:
+  1px solid rgba(255,255,255,0.08);
 
   transition:
   transform 0.35s ease,
-  box-shadow 0.35s ease,
-  border 0.35s ease;
+  box-shadow 0.35s ease;
+
 }
 
+/* HOVER */
 .btn:hover{
 
   transform:
   translateY(-6px)
-  scale(1.05);
+  scale(1.06);
 
   box-shadow:
-  0 0 30px rgba(59,130,246,0.4),
-  0 0 80px rgba(59,130,246,0.15);
-
-}
-
-/* PANEL */
-.panel{
-
-  margin-top:70px;
-
-  padding:28px;
-
-  width:800px;
-  max-width:95%;
-
-  border-radius:22px;
-
-  background:
-  rgba(15,23,42,0.5);
-
-  border:
-  1px solid rgba(255,255,255,0.08);
-
-  backdrop-filter:blur(14px);
-
-}
-
-.panel h2{
-
-  margin-bottom:18px;
-
-  color:#93c5fd;
-
-  font-size:34px;
-
-}
-
-.panel p{
-
-  line-height:1.8;
-
-  color:#cbd5e1;
-
-  font-size:17px;
+  0 0 30px rgba(59,130,246,0.45),
+  0 0 80px rgba(59,130,246,0.2);
 
 }
 
@@ -204,9 +181,9 @@ footer{
 
   bottom:20px;
 
-  text-align:center;
-
   width:100%;
+
+  text-align:center;
 
   color:#94a3b8;
 
@@ -218,20 +195,21 @@ footer{
 @media(max-width:768px){
 
   h1{
-    font-size:48px;
+    font-size:52px;
   }
 
-  .subtitle{
-    font-size:18px;
-  }
+  .btn{
 
-  .panel h2{
-    font-size:28px;
+    width:100%;
+
+    max-width:320px;
+
   }
 
 }
 
 </style>
+
 </head>
 
 <body>
@@ -239,40 +217,25 @@ footer{
 <!-- BACKGROUND -->
 <canvas id="bg"></canvas>
 
+<!-- OVERLAY -->
 <div class="overlay"></div>
 
 <!-- CONTENT -->
 <div class="content">
 
+  <!-- TITLE -->
   <h1>DevLokaStudios</h1>
-
-  <p class="subtitle">
-    Futuristic Interactive Game Studio Experience
-  </p>
 
   <!-- WORKING BUTTONS -->
   <div class="buttons">
 
-    <a href="game1.html" class="btn">
+    <a href="./game1.html" class="btn">
       🚗 Turbo Realm Racing
     </a>
 
-    <a href="game2.html" class="btn">
+    <a href="./game2.html" class="btn">
       🕹️ Runfinity
     </a>
-
-  </div>
-
-  <!-- PANEL -->
-  <div class="panel">
-
-    <h2>Next Generation Gaming</h2>
-
-    <p>
-      Explore immersive worlds, futuristic racing,
-      cinematic adventures, and intense gameplay
-      experiences crafted by DevLokaStudios.
-    </p>
 
   </div>
 
@@ -289,28 +252,42 @@ footer{
 
 <script>
 
-// ===========================
+// ======================
 // SCENE
-// ===========================
+// ======================
 
-const scene = new THREE.Scene();
+const scene =
+new THREE.Scene();
 
-const camera = new THREE.PerspectiveCamera(
+// ======================
+// CAMERA
+// ======================
+
+const camera =
+new THREE.PerspectiveCamera(
+
   75,
-  window.innerWidth / window.innerHeight,
+
+  window.innerWidth /
+  window.innerHeight,
+
   0.1,
+
   1000
+
 );
 
 camera.position.z = 12;
 
-// ===========================
+// ======================
 // RENDERER
-// ===========================
+// ======================
 
-const renderer = new THREE.WebGLRenderer({
+const renderer =
+new THREE.WebGLRenderer({
 
-  canvas:document.getElementById("bg"),
+  canvas:
+  document.getElementById("bg"),
 
   antialias:true,
 
@@ -319,17 +296,25 @@ const renderer = new THREE.WebGLRenderer({
 });
 
 renderer.setSize(
+
   window.innerWidth,
+
   window.innerHeight
+
 );
 
 renderer.setPixelRatio(
-  Math.min(window.devicePixelRatio,2)
+
+  Math.min(
+    window.devicePixelRatio,
+    2
+  )
+
 );
 
-// ===========================
+// ======================
 // PARTICLES
-// ===========================
+// ======================
 
 const particlesGeometry =
 new THREE.BufferGeometry();
@@ -337,10 +322,16 @@ new THREE.BufferGeometry();
 const particleCount = 15000;
 
 const positions =
-new Float32Array(particleCount * 3);
+new Float32Array(
+  particleCount * 3
+);
 
 const colors =
-new Float32Array(particleCount * 3);
+new Float32Array(
+  particleCount * 3
+);
+
+// CREATE PARTICLES
 
 for(let i = 0; i < particleCount; i++){
 
@@ -361,25 +352,35 @@ for(let i = 0; i < particleCount; i++){
 
 }
 
+// POSITIONS
+
 particlesGeometry.setAttribute(
+
   "position",
+
   new THREE.BufferAttribute(
     positions,
     3
   )
+
 );
 
+// COLORS
+
 particlesGeometry.setAttribute(
+
   "color",
+
   new THREE.BufferAttribute(
     colors,
     3
   )
+
 );
 
-// ===========================
+// ======================
 // MATERIAL
-// ===========================
+// ======================
 
 const particlesMaterial =
 new THREE.PointsMaterial({
@@ -399,61 +400,77 @@ new THREE.PointsMaterial({
 
 });
 
-// ===========================
-// PARTICLE SYSTEM
-// ===========================
+// ======================
+// PARTICLE MESH
+// ======================
 
 const particlesMesh =
 new THREE.Points(
+
   particlesGeometry,
+
   particlesMaterial
+
 );
 
 scene.add(particlesMesh);
 
-// ===========================
+// ======================
 // MOUSE
-// ===========================
+// ======================
 
 let mouseX = 0;
 let mouseY = 0;
 
 document.addEventListener(
+
   "mousemove",
+
   (event)=>{
 
-  mouseX =
-  (event.clientX / window.innerWidth - 0.5);
+    mouseX =
+    event.clientX /
+    window.innerWidth - 0.5;
 
-  mouseY =
-  (event.clientY / window.innerHeight - 0.5);
+    mouseY =
+    event.clientY /
+    window.innerHeight - 0.5;
 
-});
+  }
 
-// ===========================
+);
+
+// ======================
 // RESIZE
-// ===========================
+// ======================
 
 window.addEventListener(
+
   "resize",
+
   ()=>{
 
-  camera.aspect =
-  window.innerWidth /
-  window.innerHeight;
+    camera.aspect =
+    window.innerWidth /
+    window.innerHeight;
 
-  camera.updateProjectionMatrix();
+    camera.updateProjectionMatrix();
 
-  renderer.setSize(
-    window.innerWidth,
-    window.innerHeight
-  );
+    renderer.setSize(
 
-});
+      window.innerWidth,
 
-// ===========================
+      window.innerHeight
+
+    );
+
+  }
+
+);
+
+// ======================
 // ANIMATION
-// ===========================
+// ======================
 
 const clock =
 new THREE.Clock();
@@ -465,33 +482,51 @@ function animate(){
   const elapsedTime =
   clock.getElapsedTime();
 
+  // ROTATION
+
   particlesMesh.rotation.y =
   elapsedTime * 0.05;
 
   particlesMesh.rotation.x =
   elapsedTime * 0.03;
 
+  // INTERACTION
+
   particlesMesh.rotation.y +=
-  mouseX * 0.4;
+  mouseX * 0.35;
 
   particlesMesh.rotation.x +=
-  mouseY * 0.25;
+  mouseY * 0.2;
+
+  // FLOATING
 
   particlesMesh.position.y =
-  Math.sin(elapsedTime * 0.5)
-  * 0.5;
+  Math.sin(
+    elapsedTime * 0.5
+  ) * 0.5;
+
+  // CAMERA MOVEMENT
 
   camera.position.x +=
-  (mouseX * 2 - camera.position.x)
+
+  (mouseX * 2
+  - camera.position.x)
+
   * 0.02;
 
   camera.position.y +=
-  (-mouseY * 2 - camera.position.y)
+
+  (-mouseY * 2
+  - camera.position.y)
+
   * 0.02;
 
   camera.lookAt(scene.position);
 
-  renderer.render(scene,camera);
+  renderer.render(
+    scene,
+    camera
+  );
 
 }
 
