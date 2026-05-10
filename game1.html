@@ -1,85 +1,622 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>Turbo Realm Racing - DevLokaStudios</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background-color: #0f172a;
-      color: white;
-      text-align: center;
-    }
 
-    header {
-      padding: 40px 20px;
-      background: linear-gradient(90deg, #1e3a8a, #2563eb);
-    }
+<meta charset="UTF-8">
 
-    h1 {
-      margin: 0;
-      font-size: 36px;
-    }
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-    h2 {
-      margin-top: 20px;
-      color: #93c5fd;
-    }
+<title>Turbo Realm Racing - DevLokaStudios</title>
 
-    p {
-      font-size: 18px;
-      color: #cbd5f5;
-    }
+<!-- THREE.JS -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 
-    .container {
-      padding: 40px 20px;
-    }
+<style>
 
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 25px;
-      background-color: #2563eb;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-    }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    .btn:hover {
-      background-color: #1d4ed8;
-    }
+body{
 
-    footer {
-      margin-top: 60px;
-      padding: 20px;
-      font-size: 14px;
-      color: #94a3b8;
-    }
-  </style>
+  overflow:hidden;
+
+  font-family:Arial,sans-serif;
+
+  background:#020617;
+
+  color:white;
+
+}
+
+/* BACKGROUND */
+#bg{
+
+  position:fixed;
+
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  z-index:-10;
+
+}
+
+/* OVERLAY */
+.overlay{
+
+  position:fixed;
+
+  inset:0;
+
+  background:
+  radial-gradient(
+  circle at center,
+  rgba(37,99,235,0.12),
+  rgba(2,6,23,0.88)
+  );
+
+  z-index:-5;
+
+}
+
+/* MAIN */
+.container{
+
+  min-height:100vh;
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:center;
+
+  align-items:center;
+
+  text-align:center;
+
+  padding:20px;
+
+}
+
+/* GAME TITLE */
+h1{
+
+  font-size:90px;
+
+  margin-bottom:10px;
+
+  background:
+  linear-gradient(
+  to right,
+  #ffffff,
+  #93c5fd,
+  #60a5fa
+  );
+
+  -webkit-background-clip:text;
+
+  -webkit-text-fill-color:transparent;
+
+  text-shadow:
+  0 0 30px rgba(59,130,246,0.4);
+
+}
+
+/* SUBTITLE */
+.subtitle{
+
+  font-size:28px;
+
+  color:#cbd5e1;
+
+  margin-bottom:50px;
+
+}
+
+/* GLASS CARD */
+.card{
+
+  width:850px;
+
+  max-width:95%;
+
+  padding:40px;
+
+  border-radius:28px;
+
+  background:
+  rgba(15,23,42,0.55);
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(18px);
+
+  box-shadow:
+  0 0 40px rgba(0,0,0,0.25);
+
+}
+
+/* SECTION TITLE */
+.card h2{
+
+  font-size:40px;
+
+  margin-bottom:25px;
+
+  color:#93c5fd;
+
+}
+
+/* DESCRIPTION */
+.card p{
+
+  font-size:20px;
+
+  line-height:1.9;
+
+  color:#cbd5e1;
+
+}
+
+/* BUTTONS */
+.buttons{
+
+  margin-top:40px;
+
+  display:flex;
+
+  gap:20px;
+
+  flex-wrap:wrap;
+
+  justify-content:center;
+
+}
+
+/* BUTTON */
+.btn{
+
+  display:inline-block;
+
+  padding:18px 34px;
+
+  border-radius:16px;
+
+  text-decoration:none;
+
+  color:white;
+
+  font-size:18px;
+
+  font-weight:bold;
+
+  background:
+  linear-gradient(
+  135deg,
+  rgba(37,99,235,0.95),
+  rgba(29,78,216,0.95)
+  );
+
+  transition:
+  transform 0.35s ease,
+  box-shadow 0.35s ease;
+
+}
+
+/* BUTTON HOVER */
+.btn:hover{
+
+  transform:
+  translateY(-6px)
+  scale(1.05);
+
+  box-shadow:
+  0 0 35px rgba(59,130,246,0.5),
+  0 0 90px rgba(59,130,246,0.18);
+
+}
+
+/* FOOTER */
+footer{
+
+  position:absolute;
+
+  bottom:20px;
+
+  width:100%;
+
+  text-align:center;
+
+  color:#94a3b8;
+
+  font-size:14px;
+
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+  h1{
+    font-size:52px;
+  }
+
+  .subtitle{
+    font-size:20px;
+  }
+
+  .card{
+    padding:28px;
+  }
+
+  .card h2{
+    font-size:30px;
+  }
+
+  .card p{
+    font-size:17px;
+  }
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-  <header>
-    <h1>DevLokaStudios</h1>
-    <h2>🚗 Turbo Realm Racing</h2>
-    <p>High-speed racing. Endless excitement.</p>
-  </header>
+<!-- BACKGROUND -->
+<canvas id="bg"></canvas>
 
-  <div class="container">
-    <h2>About the Game</h2>
-    <p>
-      Turbo Realm Racing is an action-packed racing game where players experience
-      high-speed driving, challenging tracks, and competitive gameplay.
-      Test your reflexes and race through dynamic environments.
-    </p>
+<!-- OVERLAY -->
+<div class="overlay"></div>
 
-    <a class="btn" href="privacy-policy-game1.html">View Privacy Policy</a>
+<!-- MAIN CONTENT -->
+<div class="container">
+
+  <h1>Turbo Realm Racing</h1>
+
+  <div class="subtitle">
+    High-Speed Racing • Neon Worlds • Endless Excitement
   </div>
 
-  <footer>
-    <p>Contact: devlokstudiossupport@gmail.com</p>
-    <p>&copy; DevLokaStudios</p>
-  </footer>
+  <div class="card">
+
+    <h2>About The Game</h2>
+
+    <p>
+
+      Turbo Realm Racing is an action-packed futuristic racing experience
+      where players compete through neon highways, dangerous tracks,
+      and cinematic environments with ultra-fast gameplay.
+
+      Master your reflexes, drift through intense corners,
+      and dominate dynamic racing realms.
+
+    </p>
+
+    <div class="buttons">
+
+      <!-- PRIVACY POLICY -->
+      <a href="privacy-policy-game1.html"
+      class="btn">
+
+        Privacy Policy
+
+      </a>
+
+      <!-- HOME -->
+      <a href="index.html"
+      class="btn">
+
+        Back To Home
+
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+
+  Contact: devlokstudiossupport@gmail.com
+  <br>
+  © 2026 DevLokaStudios
+
+</footer>
+
+<script>
+
+// ======================
+// SCENE
+// ======================
+
+const scene =
+new THREE.Scene();
+
+// ======================
+// CAMERA
+// ======================
+
+const camera =
+new THREE.PerspectiveCamera(
+
+  75,
+
+  window.innerWidth /
+  window.innerHeight,
+
+  0.1,
+
+  1000
+
+);
+
+camera.position.z = 12;
+
+// ======================
+// RENDERER
+// ======================
+
+const renderer =
+new THREE.WebGLRenderer({
+
+  canvas:
+  document.getElementById("bg"),
+
+  antialias:true,
+
+  alpha:true
+
+});
+
+renderer.setSize(
+
+  window.innerWidth,
+
+  window.innerHeight
+
+);
+
+renderer.setPixelRatio(
+
+  Math.min(
+    window.devicePixelRatio,
+    2
+  )
+
+);
+
+// ======================
+// PARTICLES
+// ======================
+
+const particlesGeometry =
+new THREE.BufferGeometry();
+
+const particleCount = 18000;
+
+const positions =
+new Float32Array(
+  particleCount * 3
+);
+
+const colors =
+new Float32Array(
+  particleCount * 3
+);
+
+// CREATE PARTICLES
+
+for(let i = 0; i < particleCount; i++){
+
+  const i3 = i * 3;
+
+  positions[i3] =
+  (Math.random() - 0.5) * 70;
+
+  positions[i3 + 1] =
+  (Math.random() - 0.5) * 70;
+
+  positions[i3 + 2] =
+  (Math.random() - 0.5) * 70;
+
+  colors[i3] = 0.2;
+  colors[i3 + 1] = 0.6;
+  colors[i3 + 2] = 1;
+
+}
+
+// POSITION
+
+particlesGeometry.setAttribute(
+
+  "position",
+
+  new THREE.BufferAttribute(
+    positions,
+    3
+  )
+
+);
+
+// COLOR
+
+particlesGeometry.setAttribute(
+
+  "color",
+
+  new THREE.BufferAttribute(
+    colors,
+    3
+  )
+
+);
+
+// ======================
+// MATERIAL
+// ======================
+
+const particlesMaterial =
+new THREE.PointsMaterial({
+
+  size:0.07,
+
+  vertexColors:true,
+
+  transparent:true,
+
+  opacity:0.9,
+
+  blending:
+  THREE.AdditiveBlending,
+
+  depthWrite:false
+
+});
+
+// ======================
+// PARTICLE SYSTEM
+// ======================
+
+const particlesMesh =
+new THREE.Points(
+
+  particlesGeometry,
+
+  particlesMaterial
+
+);
+
+scene.add(particlesMesh);
+
+// ======================
+// MOUSE
+// ======================
+
+let mouseX = 0;
+let mouseY = 0;
+
+document.addEventListener(
+
+  "mousemove",
+
+  (event)=>{
+
+    mouseX =
+    event.clientX /
+    window.innerWidth - 0.5;
+
+    mouseY =
+    event.clientY /
+    window.innerHeight - 0.5;
+
+  }
+
+);
+
+// ======================
+// RESIZE
+// ======================
+
+window.addEventListener(
+
+  "resize",
+
+  ()=>{
+
+    camera.aspect =
+    window.innerWidth /
+    window.innerHeight;
+
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(
+
+      window.innerWidth,
+
+      window.innerHeight
+
+    );
+
+  }
+
+);
+
+// ======================
+// ANIMATION
+// ======================
+
+const clock =
+new THREE.Clock();
+
+function animate(){
+
+  requestAnimationFrame(animate);
+
+  const elapsedTime =
+  clock.getElapsedTime();
+
+  // ROTATION
+
+  particlesMesh.rotation.y =
+  elapsedTime * 0.05;
+
+  particlesMesh.rotation.x =
+  elapsedTime * 0.03;
+
+  // INTERACTION
+
+  particlesMesh.rotation.y +=
+  mouseX * 0.25;
+
+  particlesMesh.rotation.x +=
+  mouseY * 0.15;
+
+  // FLOATING
+
+  particlesMesh.position.y =
+  Math.sin(
+    elapsedTime * 0.5
+  ) * 0.5;
+
+  // CAMERA
+
+  camera.position.x +=
+
+  (mouseX * 2
+  - camera.position.x)
+
+  * 0.02;
+
+  camera.position.y +=
+
+  (-mouseY * 2
+  - camera.position.y)
+
+  * 0.02;
+
+  camera.lookAt(scene.position);
+
+  renderer.render(
+    scene,
+    camera
+  );
+
+}
+
+animate();
+
+</script>
 
 </body>
 </html>
