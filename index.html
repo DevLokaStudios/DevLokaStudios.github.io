@@ -126,6 +126,8 @@ h1{
 
   justify-content:center;
 
+  max-width:1000px;
+
 }
 
 /* BUTTON STYLE */
@@ -226,7 +228,7 @@ footer{
   <!-- TITLE -->
   <h1>DevLokaStudios</h1>
 
-  <!-- WORKING BUTTONS -->
+  <!-- GAME BUTTONS -->
   <div class="buttons">
 
     <a href="./game1.html" class="btn">
@@ -235,6 +237,10 @@ footer{
 
     <a href="./game2.html" class="btn">
       🕹️ Runfinity
+    </a>
+
+    <a href="./gorillavshumans.html" class="btn">
+      🦍 GorillaVsHumans
     </a>
 
   </div>
@@ -464,6 +470,15 @@ window.addEventListener(
 
     );
 
+    renderer.setPixelRatio(
+
+      Math.min(
+        window.devicePixelRatio,
+        2
+      )
+
+    );
+
   }
 
 );
@@ -535,4 +550,5 @@ animate();
 </script>
 
 </body>
+
 </html>
