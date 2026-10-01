@@ -1,622 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>Turbo Realm Racing - DevLokaStudios</title>
-
-<!-- THREE.JS -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-
-<style>
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-body{
-
-  overflow:hidden;
-
-  font-family:Arial,sans-serif;
-
-  background:#020617;
-
-  color:white;
-
-}
-
-/* BACKGROUND */
-#bg{
-
-  position:fixed;
-
-  inset:0;
-
-  width:100%;
-  height:100%;
-
-  z-index:-10;
-
-}
-
-/* OVERLAY */
-.overlay{
-
-  position:fixed;
-
-  inset:0;
-
-  background:
-  radial-gradient(
-  circle at center,
-  rgba(37,99,235,0.12),
-  rgba(2,6,23,0.88)
-  );
-
-  z-index:-5;
-
-}
-
-/* MAIN */
-.container{
-
-  min-height:100vh;
-
-  display:flex;
-
-  flex-direction:column;
-
-  justify-content:center;
-
-  align-items:center;
-
-  text-align:center;
-
-  padding:20px;
-
-}
-
-/* GAME TITLE */
-h1{
-
-  font-size:90px;
-
-  margin-bottom:10px;
-
-  background:
-  linear-gradient(
-  to right,
-  #ffffff,
-  #93c5fd,
-  #60a5fa
-  );
-
-  -webkit-background-clip:text;
-
-  -webkit-text-fill-color:transparent;
-
-  text-shadow:
-  0 0 30px rgba(59,130,246,0.4);
-
-}
-
-/* SUBTITLE */
-.subtitle{
-
-  font-size:28px;
-
-  color:#cbd5e1;
-
-  margin-bottom:50px;
-
-}
-
-/* GLASS CARD */
-.card{
-
-  width:850px;
-
-  max-width:95%;
-
-  padding:40px;
-
-  border-radius:28px;
-
-  background:
-  rgba(15,23,42,0.55);
-
-  border:
-  1px solid rgba(255,255,255,0.08);
-
-  backdrop-filter:blur(18px);
-
-  box-shadow:
-  0 0 40px rgba(0,0,0,0.25);
-
-}
-
-/* SECTION TITLE */
-.card h2{
-
-  font-size:40px;
-
-  margin-bottom:25px;
-
-  color:#93c5fd;
-
-}
-
-/* DESCRIPTION */
-.card p{
-
-  font-size:20px;
-
-  line-height:1.9;
-
-  color:#cbd5e1;
-
-}
-
-/* BUTTONS */
-.buttons{
-
-  margin-top:40px;
-
-  display:flex;
-
-  gap:20px;
-
-  flex-wrap:wrap;
-
-  justify-content:center;
-
-}
-
-/* BUTTON */
-.btn{
-
-  display:inline-block;
-
-  padding:18px 34px;
-
-  border-radius:16px;
-
-  text-decoration:none;
-
-  color:white;
-
-  font-size:18px;
-
-  font-weight:bold;
-
-  background:
-  linear-gradient(
-  135deg,
-  rgba(37,99,235,0.95),
-  rgba(29,78,216,0.95)
-  );
-
-  transition:
-  transform 0.35s ease,
-  box-shadow 0.35s ease;
-
-}
-
-/* BUTTON HOVER */
-.btn:hover{
-
-  transform:
-  translateY(-6px)
-  scale(1.05);
-
-  box-shadow:
-  0 0 35px rgba(59,130,246,0.5),
-  0 0 90px rgba(59,130,246,0.18);
-
-}
-
-/* FOOTER */
-footer{
-
-  position:absolute;
-
-  bottom:20px;
-
-  width:100%;
-
-  text-align:center;
-
-  color:#94a3b8;
-
-  font-size:14px;
-
-}
-
-/* MOBILE */
-@media(max-width:768px){
-
-  h1{
-    font-size:52px;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Turbo Realm Racing — DevLokaStudios</title>
+  <meta name="description" content="Turbo Realm Racing is an action-packed futuristic racing game for Android by DevLokaStudios. Race neon highways, drift through intense corners and dominate dynamic racing realms.">
+  <link rel="canonical" href="https://devlokastudios.github.io/game1.html">
+  <meta name="theme-color" content="#05070e">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="DevLokaStudios">
+  <meta property="og:title" content="Turbo Realm Racing — DevLokaStudios">
+  <meta property="og:description" content="Turbo Realm Racing is an action-packed futuristic racing game for Android by DevLokaStudios. Race neon highways, drift through intense corners and dominate dynamic racing realms.">
+  <meta property="og:url" content="https://devlokastudios.github.io/game1.html">
+  <meta property="og:image" content="https://devlokastudios.github.io/assets/img/og/og-turbo-realm-racing.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+  <link rel="preload" href="assets/fonts/unbounded-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script src="assets/js/site.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "Turbo Realm Racing",
+    "description": "Turbo Realm Racing is an action-packed futuristic racing experience where players compete through neon highways, dangerous tracks, and cinematic environments with ultra-fast gameplay.",
+    "genre": "Racing",
+    "gamePlatform": "Android",
+    "url": "https://devlokastudios.github.io/game1.html",
+    "image": "https://devlokastudios.github.io/assets/img/og/og-turbo-realm-racing.png",
+    "author": { "@type": "Organization", "name": "DevLokaStudios", "url": "https://devlokastudios.github.io/" }
   }
-
-  .subtitle{
-    font-size:20px;
-  }
-
-  .card{
-    padding:28px;
-  }
-
-  .card h2{
-    font-size:30px;
-  }
-
-  .card p{
-    font-size:17px;
-  }
-
-}
-
-</style>
-
+  </script>
 </head>
+<body class="theme-turbo">
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<body>
-
-<!-- BACKGROUND -->
-<canvas id="bg"></canvas>
-
-<!-- OVERLAY -->
-<div class="overlay"></div>
-
-<!-- MAIN CONTENT -->
-<div class="container">
-
-  <h1>Turbo Realm Racing</h1>
-
-  <div class="subtitle">
-    High-Speed Racing • Neon Worlds • Endless Excitement
-  </div>
-
-  <div class="card">
-
-    <h2>About The Game</h2>
-
-    <p>
-
-      Turbo Realm Racing is an action-packed futuristic racing experience
-      where players compete through neon highways, dangerous tracks,
-      and cinematic environments with ultra-fast gameplay.
-
-      Master your reflexes, drift through intense corners,
-      and dominate dynamic racing realms.
-
-    </p>
-
-    <div class="buttons">
-
-      <!-- PRIVACY POLICY -->
-      <a href="privacy-policy-game1.html"
-      class="btn">
-
-        Privacy Policy
-
+  <header class="site-header" data-header>
+    <div class="container site-header__inner">
+      <a class="brand" href="./" aria-label="DevLokaStudios home">
+        <img class="brand__mark" src="assets/img/logo-mark.svg" alt="" width="34" height="34">
+        <span class="brand__name">DevLoka<span>Studios</span></span>
       </a>
-
-      <!-- HOME -->
-      <a href="index.html"
-      class="btn">
-
-        Back To Home
-
-      </a>
-
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+        <span class="nav-toggle__icon" aria-hidden="true"></span>
+        <span class="sr-only">Menu</span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <a class="site-nav__link" href="./#games">Games</a>
+        <a class="site-nav__link" href="./#studio">Studio</a>
+        <a class="site-nav__link" href="./#contact">Contact</a>
+        <a class="btn btn--primary btn--sm" href="mailto:devlokstudiossupport@gmail.com">Get in touch</a>
+      </nav>
     </div>
-
-  </div>
-
-</div>
-
-<!-- FOOTER -->
-<footer>
-
-  Contact: devlokstudiossupport@gmail.com
-  <br>
-  © 2026 DevLokaStudios
-
-</footer>
-
-<script>
-
-// ======================
-// SCENE
-// ======================
-
-const scene =
-new THREE.Scene();
-
-// ======================
-// CAMERA
-// ======================
-
-const camera =
-new THREE.PerspectiveCamera(
-
-  75,
-
-  window.innerWidth /
-  window.innerHeight,
-
-  0.1,
-
-  1000
-
-);
-
-camera.position.z = 12;
-
-// ======================
-// RENDERER
-// ======================
-
-const renderer =
-new THREE.WebGLRenderer({
-
-  canvas:
-  document.getElementById("bg"),
-
-  antialias:true,
-
-  alpha:true
-
-});
-
-renderer.setSize(
-
-  window.innerWidth,
-
-  window.innerHeight
-
-);
-
-renderer.setPixelRatio(
-
-  Math.min(
-    window.devicePixelRatio,
-    2
-  )
-
-);
-
-// ======================
-// PARTICLES
-// ======================
-
-const particlesGeometry =
-new THREE.BufferGeometry();
-
-const particleCount = 18000;
-
-const positions =
-new Float32Array(
-  particleCount * 3
-);
-
-const colors =
-new Float32Array(
-  particleCount * 3
-);
-
-// CREATE PARTICLES
-
-for(let i = 0; i < particleCount; i++){
-
-  const i3 = i * 3;
-
-  positions[i3] =
-  (Math.random() - 0.5) * 70;
-
-  positions[i3 + 1] =
-  (Math.random() - 0.5) * 70;
-
-  positions[i3 + 2] =
-  (Math.random() - 0.5) * 70;
-
-  colors[i3] = 0.2;
-  colors[i3 + 1] = 0.6;
-  colors[i3 + 2] = 1;
-
-}
-
-// POSITION
-
-particlesGeometry.setAttribute(
-
-  "position",
-
-  new THREE.BufferAttribute(
-    positions,
-    3
-  )
-
-);
-
-// COLOR
-
-particlesGeometry.setAttribute(
-
-  "color",
-
-  new THREE.BufferAttribute(
-    colors,
-    3
-  )
-
-);
-
-// ======================
-// MATERIAL
-// ======================
-
-const particlesMaterial =
-new THREE.PointsMaterial({
-
-  size:0.07,
-
-  vertexColors:true,
-
-  transparent:true,
-
-  opacity:0.9,
-
-  blending:
-  THREE.AdditiveBlending,
-
-  depthWrite:false
-
-});
-
-// ======================
-// PARTICLE SYSTEM
-// ======================
-
-const particlesMesh =
-new THREE.Points(
-
-  particlesGeometry,
-
-  particlesMaterial
-
-);
-
-scene.add(particlesMesh);
-
-// ======================
-// MOUSE
-// ======================
-
-let mouseX = 0;
-let mouseY = 0;
-
-document.addEventListener(
-
-  "mousemove",
-
-  (event)=>{
-
-    mouseX =
-    event.clientX /
-    window.innerWidth - 0.5;
-
-    mouseY =
-    event.clientY /
-    window.innerHeight - 0.5;
-
-  }
-
-);
-
-// ======================
-// RESIZE
-// ======================
-
-window.addEventListener(
-
-  "resize",
-
-  ()=>{
-
-    camera.aspect =
-    window.innerWidth /
-    window.innerHeight;
-
-    camera.updateProjectionMatrix();
-
-    renderer.setSize(
-
-      window.innerWidth,
-
-      window.innerHeight
-
-    );
-
-  }
-
-);
-
-// ======================
-// ANIMATION
-// ======================
-
-const clock =
-new THREE.Clock();
-
-function animate(){
-
-  requestAnimationFrame(animate);
-
-  const elapsedTime =
-  clock.getElapsedTime();
-
-  // ROTATION
-
-  particlesMesh.rotation.y =
-  elapsedTime * 0.05;
-
-  particlesMesh.rotation.x =
-  elapsedTime * 0.03;
-
-  // INTERACTION
-
-  particlesMesh.rotation.y +=
-  mouseX * 0.25;
-
-  particlesMesh.rotation.x +=
-  mouseY * 0.15;
-
-  // FLOATING
-
-  particlesMesh.position.y =
-  Math.sin(
-    elapsedTime * 0.5
-  ) * 0.5;
-
-  // CAMERA
-
-  camera.position.x +=
-
-  (mouseX * 2
-  - camera.position.x)
-
-  * 0.02;
-
-  camera.position.y +=
-
-  (-mouseY * 2
-  - camera.position.y)
-
-  * 0.02;
-
-  camera.lookAt(scene.position);
-
-  renderer.render(
-    scene,
-    camera
-  );
-
-}
-
-animate();
-
-</script>
-
+  </header>
+
+  <main id="main">
+    <section class="game-hero" aria-labelledby="game-title">
+      <canvas class="starfield" data-starfield aria-hidden="true"></canvas>
+      <div class="grid-bg" aria-hidden="true"></div>
+      <div class="glow glow--a" aria-hidden="true"></div>
+      <div class="glow glow--b" aria-hidden="true"></div>
+
+      <div class="container game-hero__inner">
+        <div class="game-hero__copy">
+          <nav class="breadcrumb" aria-label="Breadcrumb" data-reveal>
+            <a href="./#games">Games</a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">Turbo Realm Racing</span>
+          </nav>
+          <p class="tag" data-reveal>Racing · Android</p>
+          <h1 class="display display--game" id="game-title" data-reveal style="--reveal-delay:.05s">Turbo Realm Racing</h1>
+          <p class="game-hero__tagline" data-reveal style="--reveal-delay:.08s">High-speed racing · Neon worlds · Endless excitement</p>
+          <div class="game-hero__about" data-reveal style="--reveal-delay:.1s">
+          <p class="lead">Turbo Realm Racing is an action-packed futuristic racing experience where players compete through neon highways, dangerous tracks, and cinematic environments with ultra-fast gameplay.</p>
+          <p class="lead">Master your reflexes, drift through intense corners, and dominate dynamic racing realms.</p>
+          </div>
+          <div class="actions" data-reveal style="--reveal-delay:.15s">
+            <!-- Google Play button: paste this game's Play Store link into href, then delete the word "hidden" to show it. -->
+            <a class="btn btn--store btn--lg" href="https://play.google.com/store/apps/details?id=PACKAGE_NAME" hidden>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6 3.6v16.8a1 1 0 0 0 1.52.85l13.6-8.4a1 1 0 0 0 0-1.7L7.52 2.75A1 1 0 0 0 6 3.6z"/></svg>
+              Get it on Google Play
+            </a>
+            <a class="btn btn--primary btn--lg" href="mailto:devlokstudiossupport@gmail.com?subject=Turbo%20Realm%20Racing%20support">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              Contact support
+            </a>
+            <a class="btn btn--ghost btn--lg" href="privacy-policy-game1.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-3.5 8-10V5l-8-3-8 3v7c0 6.5 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+              Privacy policy
+            </a>
+          </div>
+        </div>
+
+        <div class="game-hero__art" data-reveal style="--reveal-delay:.1s">
+          <div class="cover">
+            <img src="assets/img/games/turbo-realm-racing.svg" alt="Turbo Realm Racing cover art" width="800" height="600">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="features-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">Highlights</p>
+          <h2 class="h2" id="features-title">Built for speed.</h2>
+        </div>
+        <div class="features">
+          <div class="feature" data-reveal>
+            <span class="feature__num">01</span>
+            <h3 class="h3">Neon highways</h3>
+            <p>Race through glowing futuristic highways, dangerous tracks and cinematic environments.</p>
+          </div>
+          <div class="feature" data-reveal style="--reveal-delay:0.06s">
+            <span class="feature__num">02</span>
+            <h3 class="h3">Drift every corner</h3>
+            <p>Master your reflexes and hold the perfect line through intense, high-speed corners.</p>
+          </div>
+          <div class="feature" data-reveal style="--reveal-delay:0.12s">
+            <span class="feature__num">03</span>
+            <h3 class="h3">Dynamic racing realms</h3>
+            <p>Ultra-fast gameplay across racing realms built for pure speed and competition.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" aria-labelledby="info-title">
+      <div class="container info">
+        <div class="info__copy" data-reveal>
+          <p class="eyebrow">Game info</p>
+          <h2 class="h2" id="info-title">Need a hand?</h2>
+          <p class="lead">Questions, bug reports or feedback about Turbo Realm Racing? Email the team and include your device model if you’re reporting a problem.</p>
+          <a class="btn btn--ghost" href="mailto:devlokstudiossupport@gmail.com?subject=Turbo%20Realm%20Racing%20support">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            Email support
+          </a>
+        </div>
+        <dl class="info__list" data-reveal style="--reveal-delay:.08s">
+          <div class="info__row"><dt>Developer</dt><dd>DevLokaStudios</dd></div>
+          <div class="info__row"><dt>Genre</dt><dd>Racing</dd></div>
+          <div class="info__row"><dt>Platform</dt><dd>Android</dd></div>
+          <div class="info__row"><dt>Support</dt><dd><a href="mailto:devlokstudiossupport@gmail.com?subject=Turbo%20Realm%20Racing%20support">devlokstudiossupport@gmail.com</a></dd></div>
+          <div class="info__row"><dt>Privacy</dt><dd><a href="privacy-policy-game1.html">Read the privacy policy</a></dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="more-title">
+      <div class="container">
+        <div class="section-head__row">
+          <div class="section-head" data-reveal>
+            <p class="eyebrow">More from DevLokaStudios</p>
+            <h2 class="h2" id="more-title">Keep playing.</h2>
+          </div>
+          <a class="btn btn--ghost" href="./#games" data-reveal>
+            All games
+            <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+        <div class="game-grid">
+          <article class="game-card theme-runfinity" data-reveal>
+            <div class="game-card__media">
+              <img src="assets/img/games/runfinity.svg" alt="" width="800" height="600" loading="lazy">
+            </div>
+            <div class="game-card__body">
+              <div class="game-card__tags"><p class="tag">Endless runner</p></div>
+              <h3 class="game-card__title"><a href="game2.html">Runfinity</a></h3>
+              <p class="game-card__text">Run, dodge and survive an evolving futuristic world that pushes your reflexes to the limit.</p>
+              <span class="game-card__cta" aria-hidden="true">
+                View game
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </article>
+          <article class="game-card theme-gorilla" data-reveal style="--reveal-delay:0.08s">
+            <div class="game-card__media">
+              <img src="assets/img/games/gorilla-vs-humans.svg" alt="" width="800" height="600" loading="lazy">
+            </div>
+            <div class="game-card__body">
+              <div class="game-card__tags"><p class="tag">Arcade action</p></div>
+              <h3 class="game-card__title"><a href="game3.html">GorillaVsHumans</a></h3>
+              <p class="game-card__text">Play as a powerful gorilla and fight through waves of humans in chaotic, interactive environments.</p>
+              <span class="game-card__cta" aria-hidden="true">
+                View game
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </article>
+          <article class="game-card theme-crown" data-reveal style="--reveal-delay:0.16s">
+            <div class="game-card__media">
+              <img src="assets/img/games/crownmerge-hero-defense.svg" alt="" width="800" height="600" loading="lazy">
+            </div>
+            <div class="game-card__body">
+              <div class="game-card__tags"><p class="tag">Idle tower defense</p></div>
+              <h3 class="game-card__title"><a href="game4.html">Crownmerge: Hero Defense</a></h3>
+              <p class="game-card__text">Merge heroes, defend the wall and rebirth for crowns in this idle tower defense!</p>
+              <span class="game-card__cta" aria-hidden="true">
+                View game
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__grid">
+      <div class="site-footer__about">
+        <a class="brand" href="./" aria-label="DevLokaStudios home">
+          <img class="brand__mark" src="assets/img/logo-mark.svg" alt="" width="34" height="34">
+          <span class="brand__name">DevLoka<span>Studios</span></span>
+        </a>
+        <p>Independent mobile game studio building fast-paced, polished games for Android.</p>
+      </div>
+      <nav class="site-footer__col" aria-labelledby="footer-games">
+        <h2 id="footer-games">Games</h2>
+        <ul role="list">
+          <li><a href="game1.html">Turbo Realm Racing</a></li>
+          <li><a href="game2.html">Runfinity</a></li>
+          <li><a href="game3.html">GorillaVsHumans</a></li>
+          <li><a href="game4.html">Crownmerge: Hero Defense</a></li>
+        </ul>
+      </nav>
+      <nav class="site-footer__col" aria-labelledby="footer-studio">
+        <h2 id="footer-studio">Studio</h2>
+        <ul role="list">
+          <li><a href="./#studio">About</a></li>
+          <li><a href="./#contact">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy</a></li>
+        </ul>
+      </nav>
+      <div class="site-footer__col">
+        <h2>Support</h2>
+        <ul role="list">
+          <li><a href="mailto:devlokstudiossupport@gmail.com">devlokstudiossupport@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container">
+      <div class="site-footer__bottom">
+        <p>© 2026 DevLokaStudios. All rights reserved.</p>
+        <p><a href="privacy-policy.html">Privacy policies</a></p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

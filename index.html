@@ -1,554 +1,295 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>DevLokaStudios</title>
-
-<!-- THREE.JS -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-
-<style>
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-body{
-
-  overflow:hidden;
-
-  font-family:Arial,sans-serif;
-
-  background:#020617;
-
-  color:white;
-
-}
-
-/* BACKGROUND */
-#bg{
-
-  position:fixed;
-
-  top:0;
-  left:0;
-
-  width:100%;
-  height:100%;
-
-  z-index:-10;
-
-}
-
-/* DARK OVERLAY */
-.overlay{
-
-  position:fixed;
-
-  inset:0;
-
-  background:
-  radial-gradient(
-  circle at center,
-  rgba(15,23,42,0.15),
-  rgba(2,6,23,0.85)
-  );
-
-  z-index:-5;
-
-}
-
-/* MAIN CONTENT */
-.content{
-
-  position:relative;
-
-  z-index:10;
-
-  min-height:100vh;
-
-  display:flex;
-
-  flex-direction:column;
-
-  justify-content:center;
-
-  align-items:center;
-
-  text-align:center;
-
-  padding:20px;
-
-}
-
-/* TITLE */
-h1{
-
-  font-size:90px;
-
-  background:
-  linear-gradient(
-  to right,
-  #ffffff,
-  #93c5fd,
-  #60a5fa
-  );
-
-  -webkit-background-clip:text;
-
-  -webkit-text-fill-color:transparent;
-
-  letter-spacing:3px;
-
-  margin-bottom:50px;
-
-  text-shadow:
-  0 0 25px rgba(96,165,250,0.4);
-
-}
-
-/* BUTTONS */
-.buttons{
-
-  display:flex;
-
-  gap:25px;
-
-  flex-wrap:wrap;
-
-  justify-content:center;
-
-  max-width:1000px;
-
-}
-
-/* BUTTON STYLE */
-.btn{
-
-  display:inline-block;
-
-  padding:18px 34px;
-
-  border-radius:16px;
-
-  text-decoration:none;
-
-  color:white;
-
-  font-size:18px;
-
-  font-weight:bold;
-
-  background:
-  linear-gradient(
-  135deg,
-  rgba(37,99,235,0.9),
-  rgba(29,78,216,0.9)
-  );
-
-  border:
-  1px solid rgba(255,255,255,0.08);
-
-  transition:
-  transform 0.35s ease,
-  box-shadow 0.35s ease;
-
-}
-
-/* HOVER */
-.btn:hover{
-
-  transform:
-  translateY(-6px)
-  scale(1.06);
-
-  box-shadow:
-  0 0 30px rgba(59,130,246,0.45),
-  0 0 80px rgba(59,130,246,0.2);
-
-}
-
-/* FOOTER */
-footer{
-
-  position:absolute;
-
-  bottom:20px;
-
-  width:100%;
-
-  text-align:center;
-
-  color:#94a3b8;
-
-  font-size:14px;
-
-}
-
-/* MOBILE */
-@media(max-width:768px){
-
-  h1{
-    font-size:52px;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DevLokaStudios — Independent Mobile Game Studio</title>
+  <meta name="description" content="DevLokaStudios is an independent mobile game studio making fast-paced, polished games for Android, including Turbo Realm Racing, Runfinity, GorillaVsHumans and Crownmerge: Hero Defense.">
+  <link rel="canonical" href="https://devlokastudios.github.io/">
+  <meta name="theme-color" content="#05070e">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="DevLokaStudios">
+  <meta property="og:title" content="DevLokaStudios — Independent Mobile Game Studio">
+  <meta property="og:description" content="DevLokaStudios is an independent mobile game studio making fast-paced, polished games for Android, including Turbo Realm Racing, Runfinity, GorillaVsHumans and Crownmerge: Hero Defense.">
+  <meta property="og:url" content="https://devlokastudios.github.io/">
+  <meta property="og:image" content="https://devlokastudios.github.io/assets/img/og/og-home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+  <link rel="preload" href="assets/fonts/unbounded-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script src="assets/js/site.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "DevLokaStudios",
+    "url": "https://devlokastudios.github.io/",
+    "logo": "https://devlokastudios.github.io/assets/img/apple-touch-icon.png",
+    "email": "devlokstudiossupport@gmail.com"
   }
-
-  .btn{
-
-    width:100%;
-
-    max-width:320px;
-
-  }
-
-}
-
-</style>
-
+  </script>
 </head>
-
 <body>
-
-<!-- BACKGROUND -->
-<canvas id="bg"></canvas>
-
-<!-- OVERLAY -->
-<div class="overlay"></div>
-
-<!-- CONTENT -->
-<div class="content">
-
-  <!-- TITLE -->
-  <h1>DevLokaStudios</h1>
-
-  <!-- GAME BUTTONS -->
-  <div class="buttons">
-
-    <a href="./game1.html" class="btn">
-      🚗 Turbo Realm Racing
-    </a>
-
-    <a href="./game2.html" class="btn">
-      🕹️ Runfinity
-    </a>
-
-    <a href="./game3.html" class="btn">
-      🦍 GorillaVsHumans
-    </a>
-
-  </div>
-
-</div>
-
-<!-- FOOTER -->
-<footer>
-
-  Contact: devlokstudiossupport@gmail.com
-  <br>
-  © 2026 DevLokaStudios
-
-</footer>
-
-<script>
-
-// ======================
-// SCENE
-// ======================
-
-const scene =
-new THREE.Scene();
-
-// ======================
-// CAMERA
-// ======================
-
-const camera =
-new THREE.PerspectiveCamera(
-
-  75,
-
-  window.innerWidth /
-  window.innerHeight,
-
-  0.1,
-
-  1000
-
-);
-
-camera.position.z = 12;
-
-// ======================
-// RENDERER
-// ======================
-
-const renderer =
-new THREE.WebGLRenderer({
-
-  canvas:
-  document.getElementById("bg"),
-
-  antialias:true,
-
-  alpha:true
-
-});
-
-renderer.setSize(
-
-  window.innerWidth,
-
-  window.innerHeight
-
-);
-
-renderer.setPixelRatio(
-
-  Math.min(
-    window.devicePixelRatio,
-    2
-  )
-
-);
-
-// ======================
-// PARTICLES
-// ======================
-
-const particlesGeometry =
-new THREE.BufferGeometry();
-
-const particleCount = 15000;
-
-const positions =
-new Float32Array(
-  particleCount * 3
-);
-
-const colors =
-new Float32Array(
-  particleCount * 3
-);
-
-// CREATE PARTICLES
-
-for(let i = 0; i < particleCount; i++){
-
-  const i3 = i * 3;
-
-  positions[i3] =
-  (Math.random() - 0.5) * 60;
-
-  positions[i3 + 1] =
-  (Math.random() - 0.5) * 60;
-
-  positions[i3 + 2] =
-  (Math.random() - 0.5) * 60;
-
-  colors[i3] = 0.3;
-  colors[i3 + 1] = 0.6;
-  colors[i3 + 2] = 1;
-
-}
-
-// POSITIONS
-
-particlesGeometry.setAttribute(
-
-  "position",
-
-  new THREE.BufferAttribute(
-    positions,
-    3
-  )
-
-);
-
-// COLORS
-
-particlesGeometry.setAttribute(
-
-  "color",
-
-  new THREE.BufferAttribute(
-    colors,
-    3
-  )
-
-);
-
-// ======================
-// MATERIAL
-// ======================
-
-const particlesMaterial =
-new THREE.PointsMaterial({
-
-  size:0.06,
-
-  vertexColors:true,
-
-  transparent:true,
-
-  opacity:0.9,
-
-  blending:
-  THREE.AdditiveBlending,
-
-  depthWrite:false
-
-});
-
-// ======================
-// PARTICLE MESH
-// ======================
-
-const particlesMesh =
-new THREE.Points(
-
-  particlesGeometry,
-
-  particlesMaterial
-
-);
-
-scene.add(particlesMesh);
-
-// ======================
-// MOUSE
-// ======================
-
-let mouseX = 0;
-let mouseY = 0;
-
-document.addEventListener(
-
-  "mousemove",
-
-  (event)=>{
-
-    mouseX =
-    event.clientX /
-    window.innerWidth - 0.5;
-
-    mouseY =
-    event.clientY /
-    window.innerHeight - 0.5;
-
-  }
-
-);
-
-// ======================
-// RESIZE
-// ======================
-
-window.addEventListener(
-
-  "resize",
-
-  ()=>{
-
-    camera.aspect =
-    window.innerWidth /
-    window.innerHeight;
-
-    camera.updateProjectionMatrix();
-
-    renderer.setSize(
-
-      window.innerWidth,
-
-      window.innerHeight
-
-    );
-
-    renderer.setPixelRatio(
-
-      Math.min(
-        window.devicePixelRatio,
-        2
-      )
-
-    );
-
-  }
-
-);
-
-// ======================
-// ANIMATION
-// ======================
-
-const clock =
-new THREE.Clock();
-
-function animate(){
-
-  requestAnimationFrame(animate);
-
-  const elapsedTime =
-  clock.getElapsedTime();
-
-  // ROTATION
-
-  particlesMesh.rotation.y =
-  elapsedTime * 0.05;
-
-  particlesMesh.rotation.x =
-  elapsedTime * 0.03;
-
-  // INTERACTION
-
-  particlesMesh.rotation.y +=
-  mouseX * 0.35;
-
-  particlesMesh.rotation.x +=
-  mouseY * 0.2;
-
-  // FLOATING
-
-  particlesMesh.position.y =
-  Math.sin(
-    elapsedTime * 0.5
-  ) * 0.5;
-
-  // CAMERA MOVEMENT
-
-  camera.position.x +=
-
-  (mouseX * 2
-  - camera.position.x)
-
-  * 0.02;
-
-  camera.position.y +=
-
-  (-mouseY * 2
-  - camera.position.y)
-
-  * 0.02;
-
-  camera.lookAt(scene.position);
-
-  renderer.render(
-    scene,
-    camera
-  );
-
-}
-
-animate();
-
-</script>
-
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" data-header>
+    <div class="container site-header__inner">
+      <a class="brand" href="./" aria-label="DevLokaStudios home">
+        <img class="brand__mark" src="assets/img/logo-mark.svg" alt="" width="34" height="34">
+        <span class="brand__name">DevLoka<span>Studios</span></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+        <span class="nav-toggle__icon" aria-hidden="true"></span>
+        <span class="sr-only">Menu</span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <a class="site-nav__link" href="./#games">Games</a>
+        <a class="site-nav__link" href="./#studio">Studio</a>
+        <a class="site-nav__link" href="./#contact">Contact</a>
+        <a class="btn btn--primary btn--sm" href="mailto:devlokstudiossupport@gmail.com">Get in touch</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-title">
+      <canvas class="starfield" data-starfield aria-hidden="true"></canvas>
+      <div class="grid-bg" aria-hidden="true"></div>
+      <div class="glow glow--a" aria-hidden="true"></div>
+      <div class="glow glow--b" aria-hidden="true"></div>
+
+      <div class="container hero__inner">
+        <div class="hero__copy">
+          <p class="eyebrow eyebrow--pill" data-reveal><span class="eyebrow__dot" aria-hidden="true"></span>Independent mobile game studio</p>
+          <h1 class="display" id="hero-title" data-reveal style="--reveal-delay:.05s">
+            Building worlds <span class="text-gradient">you can play.</span>
+          </h1>
+          <p class="lead" data-reveal style="--reveal-delay:.1s">
+            DevLokaStudios creates fast-paced, polished games for Android — easy to pick up, hard to put down.
+          </p>
+          <div class="actions" data-reveal style="--reveal-delay:.15s">
+            <a class="btn btn--primary btn--lg" href="#games">
+              Explore our games
+              <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn--ghost btn--lg" href="#contact">Contact the studio</a>
+          </div>
+          <div class="hero__featured" data-reveal style="--reveal-delay:.2s">
+            <span class="hero__featured-label">Featured</span>
+            <a class="mini-game theme-gorilla" href="game3.html">
+              <img src="assets/img/games/gorilla-vs-humans.svg" alt="" width="800" height="600">
+              <span>GorillaVsHumans</span>
+            </a>
+            <a class="mini-game theme-crown" href="game4.html">
+              <img src="assets/img/games/crownmerge-hero-defense.svg" alt="" width="800" height="600">
+              <span>Crownmerge</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero__art" aria-hidden="true" data-reveal style="--reveal-delay:.2s">
+          <div class="stack">
+            <div class="stack__card stack__card--1"><img src="assets/img/games/turbo-realm-racing.svg" alt="" width="800" height="600"></div>
+            <div class="stack__card stack__card--2"><img src="assets/img/games/gorilla-vs-humans.svg" alt="" width="800" height="600"></div>
+            <div class="stack__card stack__card--3"><img src="assets/img/games/crownmerge-hero-defense.svg" alt="" width="800" height="600"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Games -->
+    <section class="section" id="games" aria-labelledby="games-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">Our games</p>
+          <h2 class="h2" id="games-title">Four worlds, built to be played.</h2>
+          <p class="lead">From neon racetracks and endless runs to all-out arcade chaos and idle castle defense — every game we make is crafted to feel great in your hands.</p>
+        </div>
+
+        <div class="game-grid game-grid--2">
+          <article class="game-card game-card--featured theme-gorilla" data-reveal>
+            <div class="game-card__media">
+              <img src="assets/img/games/gorilla-vs-humans.svg" alt="" width="800" height="600" loading="lazy">
+            </div>
+            <div class="game-card__body">
+              <div class="game-card__tags"><p class="tag">Arcade action</p><span class="badge">Featured</span></div>
+              <h3 class="game-card__title"><a href="game3.html">GorillaVsHumans</a></h3>
+              <p class="game-card__text">Play as a powerful gorilla and fight through waves of humans in chaotic, interactive environments.</p>
+              <span class="game-card__cta" aria-hidden="true">
+                View game
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </article>
+          <article class="game-card game-card--featured theme-crown" data-reveal style="--reveal-delay:0.08s">
+            <div class="game-card__media">
+              <img src="assets/img/games/crownmerge-hero-defense.svg" alt="" width="800" height="600" loading="lazy">
+            </div>
+            <div class="game-card__body">
+              <div class="game-card__tags"><p class="tag">Idle tower defense</p><span class="badge">Featured</span></div>
+              <h3 class="game-card__title"><a href="game4.html">Crownmerge: Hero Defense</a></h3>
+              <p class="game-card__text">Merge heroes, defend the wall and rebirth for crowns in this idle tower defense!</p>
+              <span class="game-card__cta" aria-hidden="true">
+                View game
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </article>
+        </div>
+
+        <h3 class="subhead" data-reveal>More games</h3>
+        <div class="game-grid game-grid--2">
+          <article class="game-card game-card--compact theme-turbo" data-reveal>
+            <div class="game-card__media">
+              <img src="assets/img/games/turbo-realm-racing.svg" alt="" width="800" height="600" loading="lazy">
+            </div>
+            <div class="game-card__body">
+              <div class="game-card__tags"><p class="tag">Racing</p></div>
+              <h3 class="game-card__title"><a href="game1.html">Turbo Realm Racing</a></h3>
+              <p class="game-card__text">Futuristic, high-speed racing through neon highways, dangerous tracks and cinematic worlds.</p>
+              <span class="game-card__cta" aria-hidden="true">
+                View game
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </article>
+          <article class="game-card game-card--compact theme-runfinity" data-reveal style="--reveal-delay:0.08s">
+            <div class="game-card__media">
+              <img src="assets/img/games/runfinity.svg" alt="" width="800" height="600" loading="lazy">
+            </div>
+            <div class="game-card__body">
+              <div class="game-card__tags"><p class="tag">Endless runner</p></div>
+              <h3 class="game-card__title"><a href="game2.html">Runfinity</a></h3>
+              <p class="game-card__text">Run, dodge and survive an evolving futuristic world that pushes your reflexes to the limit.</p>
+              <span class="game-card__cta" aria-hidden="true">
+                View game
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Studio -->
+    <section class="section section--alt" id="studio" aria-labelledby="studio-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">The studio</p>
+          <h2 class="h2" id="studio-title">Small studio. Serious about feel.</h2>
+          <p class="lead">DevLokaStudios is an independent studio building mobile-first games. We sweat the details that make a game worth coming back to.</p>
+        </div>
+
+        <div class="pillars">
+          <div class="pillar" data-reveal>
+            <span class="pillar__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </span>
+            <h3 class="h3">Smooth, optimized gameplay</h3>
+            <p>Responsive controls and steady performance, so every race, run and round feels right.</p>
+          </div>
+          <div class="pillar" data-reveal style="--reveal-delay:.06s">
+            <span class="pillar__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h4M8 9v4M15 12h.01M18 10h.01"/><path d="M17.32 5H6.68a4 4 0 0 0-3.98 3.59l-.9 8.1A2.5 2.5 0 0 0 4.29 19.5c.9 0 1.73-.48 2.17-1.27L8 15.5h8l1.54 2.73c.44.79 1.27 1.27 2.17 1.27a2.5 2.5 0 0 0 2.49-2.81l-.9-8.1A4 4 0 0 0 17.32 5z"/></svg>
+            </span>
+            <h3 class="h3">Fun that keeps you playing</h3>
+            <p>Quick to learn and satisfying to master — short sessions that have a habit of turning into long ones.</p>
+          </div>
+          <div class="pillar" data-reveal style="--reveal-delay:.12s">
+            <span class="pillar__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg>
+            </span>
+            <h3 class="h3">Mobile-first by design</h3>
+            <p>Every game starts on a phone screen, with controls, visuals and menus made for touch from day one.</p>
+          </div>
+          <div class="pillar" data-reveal style="--reveal-delay:.18s">
+            <span class="pillar__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-3.5 8-10V5l-8-3-8 3v7c0 6.5 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            </span>
+            <h3 class="h3">Privacy you can check</h3>
+            <p>Our games come with published <a href="privacy-policy.html">privacy policies</a> explaining what information is used and why.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="contact-panel" data-reveal>
+          <div class="grid-bg" aria-hidden="true"></div>
+          <div class="contact-panel__copy">
+            <p class="eyebrow">Contact</p>
+            <h2 class="h2" id="contact-title">Let’s talk.</h2>
+            <p class="lead">Need help with one of our games, have feedback to share, or want to discuss a business opportunity? Reach the team directly by email.</p>
+          </div>
+          <div class="contact-card">
+            <p class="contact-card__label">Support &amp; business</p>
+            <a class="contact-card__email" href="mailto:devlokstudiossupport@gmail.com">devlokstudiossupport<wbr>@gmail.com</a>
+            <div class="actions">
+              <a class="btn btn--primary" href="mailto:devlokstudiossupport@gmail.com">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                Send an email
+              </a>
+              <button class="btn btn--ghost" type="button" data-copy="devlokstudiossupport@gmail.com">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M4 16a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2"/></svg>
+                Copy address
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__grid">
+      <div class="site-footer__about">
+        <a class="brand" href="./" aria-label="DevLokaStudios home">
+          <img class="brand__mark" src="assets/img/logo-mark.svg" alt="" width="34" height="34">
+          <span class="brand__name">DevLoka<span>Studios</span></span>
+        </a>
+        <p>Independent mobile game studio building fast-paced, polished games for Android.</p>
+      </div>
+      <nav class="site-footer__col" aria-labelledby="footer-games">
+        <h2 id="footer-games">Games</h2>
+        <ul role="list">
+          <li><a href="game1.html">Turbo Realm Racing</a></li>
+          <li><a href="game2.html">Runfinity</a></li>
+          <li><a href="game3.html">GorillaVsHumans</a></li>
+          <li><a href="game4.html">Crownmerge: Hero Defense</a></li>
+        </ul>
+      </nav>
+      <nav class="site-footer__col" aria-labelledby="footer-studio">
+        <h2 id="footer-studio">Studio</h2>
+        <ul role="list">
+          <li><a href="./#studio">About</a></li>
+          <li><a href="./#contact">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy</a></li>
+        </ul>
+      </nav>
+      <div class="site-footer__col">
+        <h2>Support</h2>
+        <ul role="list">
+          <li><a href="mailto:devlokstudiossupport@gmail.com">devlokstudiossupport@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container">
+      <div class="site-footer__bottom">
+        <p>© 2026 DevLokaStudios. All rights reserved.</p>
+        <p><a href="privacy-policy.html">Privacy policies</a></p>
+      </div>
+    </div>
+  </footer>
 </body>
-
 </html>
